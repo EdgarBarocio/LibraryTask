@@ -10,5 +10,11 @@ import UIKit
 
 class BookTableViewCell: UITableViewCell {
     
-    
+    func configure(viewModel: BookCellViewModel) {
+        
+        self.textLabel?.text = viewModel.bookTitle
+        self.detailTextLabel?.text = viewModel.authorName + " published: " + viewModel.firstPublished
+        
+        
+    }
 }

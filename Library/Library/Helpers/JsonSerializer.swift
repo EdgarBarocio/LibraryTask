@@ -17,7 +17,8 @@ class JsonSerializer {
             let decoded = try decoder.decode(BookModel.self, from: response)
             return decoded.docs
         } catch {
-            print("Failed to decode JSON")
+            print(error)
+            print(error.localizedDescription)
             return nil
         }
     }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct BoockModel: Codable {
+struct BookModel: Codable {
     struct Docs: Codable {
         var title: String?
         var author: [String]?

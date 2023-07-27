@@ -19,6 +19,9 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="32z-xL-rMj">
                                 <rect key="frame" x="16" y="173" width="361" height="645"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="645" id="Aev-ay-EL4"/>
+                                </constraints>
                                 <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="bookCell" textLabel="mLY-LA-UWq" detailTextLabel="0ae-i0-aQ1" style="IBUITableViewCellStyleSubtitle" id="U5g-C1-hsh" customClass="BookTableViewCell" customModule="Library" customModuleProvider="target">
@@ -48,45 +51,36 @@
                                 </prototypes>
                                 <sections/>
                             </tableView>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search a Book Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xyc-dR-3VO">
-                                <rect key="frame" x="16" y="114" width="275" height="35"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <searchBar contentMode="redraw" placeholder="Enter Book Title" translatesAutoresizingMaskIntoConstraints="NO" id="9mj-7k-DvJ">
+                                <rect key="frame" x="16" y="102" width="361" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HZ3-KH-Wsy">
-                                <rect key="frame" x="299" y="114" width="78" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Search"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="62Y-vH-fxo">
-                                <rect key="frame" x="299" y="113" width="78" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Search"/>
-                            </button>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="hVu-o2-oDm"/>
+                                </connections>
+                            </searchBar>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Kvf-Uz-GpV">
+                                <rect key="frame" x="304" y="120" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                         <constraints>
-                            <constraint firstItem="HZ3-KH-Wsy" firstAttribute="bottom" secondItem="xyc-dR-3VO" secondAttribute="bottom" id="Azw-p0-u1v"/>
-                            <constraint firstItem="HZ3-KH-Wsy" firstAttribute="top" secondItem="xyc-dR-3VO" secondAttribute="top" id="HUF-sC-hGh"/>
-                            <constraint firstItem="62Y-vH-fxo" firstAttribute="trailing" secondItem="32z-xL-rMj" secondAttribute="trailing" id="OcB-6R-MTr"/>
+                            <constraint firstItem="32z-xL-rMj" firstAttribute="trailing" secondItem="9mj-7k-DvJ" secondAttribute="trailing" id="5wf-NR-dvU"/>
+                            <constraint firstItem="32z-xL-rMj" firstAttribute="leading" secondItem="9mj-7k-DvJ" secondAttribute="leading" id="Dhr-R9-Dkp"/>
+                            <constraint firstItem="32z-xL-rMj" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Jnl-ks-H9j"/>
+                            <constraint firstItem="32z-xL-rMj" firstAttribute="top" secondItem="9mj-7k-DvJ" secondAttribute="bottom" constant="15" id="ODu-0X-YiQ"/>
                             <constraint firstItem="32z-xL-rMj" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="PRd-Cw-MHJ"/>
-                            <constraint firstItem="62Y-vH-fxo" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="S0c-aq-hv0"/>
-                            <constraint firstItem="62Y-vH-fxo" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="HZ3-KH-Wsy" secondAttribute="leading" id="a3Y-Fd-IOV"/>
-                            <constraint firstItem="62Y-vH-fxo" firstAttribute="leading" secondItem="xyc-dR-3VO" secondAttribute="trailing" constant="8" id="eni-kN-T7C"/>
-                            <constraint firstItem="62Y-vH-fxo" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="hp3-zX-4qC"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="HZ3-KH-Wsy" secondAttribute="trailing" constant="16" id="ksX-bD-MQc"/>
-                            <constraint firstItem="32z-xL-rMj" firstAttribute="top" secondItem="62Y-vH-fxo" secondAttribute="bottom" constant="25" id="tBs-x6-xPY"/>
-                            <constraint firstItem="32z-xL-rMj" firstAttribute="leading" secondItem="xyc-dR-3VO" secondAttribute="leading" id="umf-IT-Jk1"/>
                             <constraint firstItem="32z-xL-rMj" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="vTf-8K-MD5"/>
-                            <constraint firstItem="32z-xL-rMj" firstAttribute="top" secondItem="xyc-dR-3VO" secondAttribute="bottom" constant="24" id="zxi-NZ-Obh"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="91j-fV-l0N"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <outlet property="SearchButton" destination="62Y-vH-fxo" id="8Bt-Zq-Qez"/>
-                        <outlet property="tableView" destination="32z-xL-rMj" id="GGq-En-IXo"/>
+                        <outlet property="activityIndicator" destination="Kvf-Uz-GpV" id="dtj-Kp-LTd"/>
+                        <outlet property="searchField" destination="9mj-7k-DvJ" id="4Rn-Jq-ALW"/>
+                        <outlet property="tableView" destination="32z-xL-rMj" id="bq0-pT-txA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

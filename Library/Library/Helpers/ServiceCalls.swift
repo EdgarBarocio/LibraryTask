@@ -7,12 +7,15 @@
 
 import Foundation
 
+struct NetworkConstants {
+    static let titleSearchURL = "https://openlibrary.org/search.json?title=%@"
+}
 class ServiceCalls {
     
     let defaultSession = URLSession(configuration: .default)
     var dataTask: URLSessionDataTask?
     
-    typealias ServiceResult = (Data) -> Void
+    typealias ServiceResult = (Data?, Error?) -> Void
     
     func fetchBookSearch(url: URL, completion: @escaping ServiceResult) {
         dataTask?.cancel()
@@ -25,14 +28,16 @@ class ServiceCalls {
             }
             
             if let error = error {
-                print(error.localizedDescription)
+                DispatchQueue.main.async {
+                    completion(nil, error)
+                }
             } else if
                 let data = data,
                 let response = response as? HTTPURLResponse,
                 response.statusCode == 200 {
                 
                 DispatchQueue.main.async {
-                    completion(data)
+                    completion(data, nil)
                 }
             }
             

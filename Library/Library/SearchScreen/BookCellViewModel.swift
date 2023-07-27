@@ -15,6 +15,11 @@ class BookCellViewModel {
     init(bookTitle: String, authorName: String, firstPublished: String) {
         self.bookTitle = bookTitle
         self.authorName = authorName
-        self.firstPublished = firstPublished
+        if firstPublished == "0" {
+            self.firstPublished = "No PUBLICATON YEAR AVAILABLE"
+        } else {
+            self.firstPublished = firstPublished
+        }
+        
     }
 }

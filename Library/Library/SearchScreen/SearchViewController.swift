@@ -26,7 +26,6 @@ class SearchViewController: UIViewController {
         // Do any additional setup after loading the view.
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(BookTableViewCell.self, forCellReuseIdentifier: "bookCell")
         
         self.navigationController?.isNavigationBarHidden = false
         self.navigationItem.title = "Welcome to the Library"
@@ -68,7 +67,8 @@ extension SearchViewController: UISearchBarDelegate {
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = BookTableViewCell(style: .subtitle, reuseIdentifier: "bookCell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: BookTableViewCell.identifier) as! BookTableViewCell
+        
         
         let cellModel = BookCellViewModel(bookTitle: self.searchResults[indexPath.row].title ?? "NO TITLE AVAILABLE",
                                           authorName: self.searchResults[indexPath.row].author?.first ?? "NO AUTHOR AVAILABLE",

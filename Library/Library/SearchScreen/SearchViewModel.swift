@@ -8,7 +8,7 @@
 import Foundation
 
 class SearchViewModel {
-    private var serviceCalls: ServiceCalls
+    private var serviceCalls: ServiceProtocol
     
     var showLoading: (() -> Void)?
     var dismissLoading: (() -> Void)?
@@ -16,7 +16,7 @@ class SearchViewModel {
     var showGenericError: ((String) -> Void)?
     var didGetSearchResults: (([BookModel.Docs]) -> Void)?
     
-    init(serviceCalls: ServiceCalls) {
+    init(serviceCalls: ServiceProtocol = ServiceCalls()) {
         self.serviceCalls = serviceCalls
     }
     

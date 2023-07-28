@@ -7,16 +7,30 @@
 
 import Foundation
 
+/// Open Library endpoint. Used to generate the search URL. Search is by title only
 struct NetworkConstants {
     static let titleSearchURL = "https://openlibrary.org/search.json?title=%@"
 }
-class ServiceCalls {
+
+/// Protocol with the signature for the base service call. Used this to allow for dependency injection
+protocol ServiceProtocol {
+    func fetchBookSearch(url: URL, completion: @escaping (Data?, Error?) -> Void)
+}
+
+class ServiceCalls: ServiceProtocol {
     
     let defaultSession = URLSession(configuration: .default)
     var dataTask: URLSessionDataTask?
     
     typealias ServiceResult = (Data?, Error?) -> Void
-    
+        
+    /**
+    Function that uses URL session to perform a search
+     
+     - Parameters:
+        - url: The library search URL 
+        - completion: Closure that passes the resulting data, object response and error
+     */
     func fetchBookSearch(url: URL, completion: @escaping ServiceResult) {
         dataTask?.cancel()
         

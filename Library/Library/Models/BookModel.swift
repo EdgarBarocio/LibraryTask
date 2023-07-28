@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Base Model object to house the Service response and information presentation.
 struct BookModel: Codable {
     struct Docs: Codable {
         var title: String?

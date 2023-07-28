@@ -9,6 +9,13 @@ import Foundation
 
 class JsonSerializer {
     
+    /**
+    Function that reads the service response, serializes it usion JSONDecoder and creates an array of BookModel.Docs
+     
+     - Parameters:
+        - response: Data representing the service response
+     - Returns: Optional BookModel array.
+     */
     func serializeResponse(response: Data) -> [BookModel.Docs]? {
         
         let decoder = JSONDecoder()

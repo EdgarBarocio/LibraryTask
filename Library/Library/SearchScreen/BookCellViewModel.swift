@@ -7,18 +7,19 @@
 
 import Foundation
 
+/// Class for The BookCellViewModel, formatting for TableView cell presentation
 class BookCellViewModel {
     var bookTitle: String
     var authorName: String
     var firstPublished: String
     
-    init(bookTitle: String, authorName: String, firstPublished: String) {
+    init(bookTitle: String, authorName: String, firstPublished: Int) {
         self.bookTitle = bookTitle
         self.authorName = authorName
-        if firstPublished == "0" {
-            self.firstPublished = "No PUBLICATON YEAR AVAILABLE"
+        if firstPublished == 0 {
+            self.firstPublished = "NO PUBLICATON YEAR AVAILABLE"
         } else {
-            self.firstPublished = firstPublished
+            self.firstPublished = String(firstPublished)
         }
         
     }

@@ -35,6 +35,7 @@ class SearchViewController: UIViewController {
     }
 }
 
+// MARK: - Searchbar Delegate calls
 extension SearchViewController: UISearchBarDelegate {
     
     @objc func dismissKeyboard() {
@@ -59,11 +60,12 @@ extension SearchViewController: UISearchBarDelegate {
       view.removeGestureRecognizer(tapRecognizer)
     }
     
-    func search(entry: String) {
+    private func search(entry: String) {
         viewModel?.fetchBookSearch(searchTerm: entry)
     }
 }
 
+// MARK: - TableView Datasource and Delegate
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -72,7 +74,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         
         let cellModel = BookCellViewModel(bookTitle: self.searchResults[indexPath.row].title ?? "NO TITLE AVAILABLE",
                                           authorName: self.searchResults[indexPath.row].author?.first ?? "NO AUTHOR AVAILABLE",
-                                          firstPublished: String(self.searchResults[indexPath.row].published ?? 0))
+                                          firstPublished: self.searchResults[indexPath.row].published ?? 0)
         
         cell.configureCell(viewModel: cellModel)
         return cell
@@ -83,8 +85,18 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+// MARK: - Extension for Callback implementations.
 private extension SearchViewController {
     
+    /**
+    Function that implements all actions the view takes with the data provided by the view model
+     
+     showLoading: Displays the activity indicator
+     dismissLoading: Hides the activity indicator
+     didGetSearchResults: A successful serialization was received form data
+     showConnectionError: Buils an error message displayed as an alertController
+     showGenericError: Builds an error message displayed as an alertController
+     */
     func setupCallbacks() {
         self.viewModel?.showLoading = { [weak self] in
             guard let self = self else { return }
@@ -116,6 +128,12 @@ private extension SearchViewController {
         }
     }
     
+    /**
+    Function that creates and displays an alert view to show an error message to the user
+     
+     - Parameters:
+        - message: Error message to be displayed on the alert
+     */
     private func buildAlert(_ message: String) {
         let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         let actionOk = UIAlertAction(title: "Ok",
